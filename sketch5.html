@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="p5.js"></script>  <link rel="stylesheet" href="limitSketch.css">
+    <script> 
+    
+    let t = 0;
+let textureGraphics;
+let rotationX = 0;
+let rotationY = 0;
+let rotationZ = 0;
+let strokeWeightFactor = 20; // Initial stroke weight factor
+let pressed = false;
+let arialFont;
+
+function preload() {
+  // Load Arial font
+  arialFont = loadFont('https://cdnjs.cloudflare.com/ajax/libs/topcoat/0.8.0/font/SourceCodePro-Bold.otf');
+}
+
+function setup() {
+  createCanvas(500, 500, WEBGL);
+  textureGraphics = createGraphics(99, 99);
+  textureGraphics.textFont(arialFont); // Set the loaded font
+  textureGraphics.noStroke();
+  drawPentagon(textureGraphics, 50, 50, 40); // Draw a pentagon
+  textureGraphics.circle(50, 50, 80);
+
+  // Display "Press here" text before the first mouse press
+  textSize(20);
+  textAlign(CENTER, CENTER);
+  fill(0);
+  textFont(arialFont); // Set the loaded font
+  text("Press here", 0, 0);
+}
+
+function draw() {
+  if (pressed) {
+    background(255);
+    t += 0.003;
+
+    rotateX(rotationX);
+    rotateY(rotationY);
+    rotateZ(rotationZ);
+
+    for (let j = 0; j < 2; j += 0.1) {
+      j > 1 ? rotateY(t) : rotateX(t);
+      rotateZ(t);
+      drawPentagon(50 + j * 250);
+    }
+
+    // Draw blue gradient background
+    // setGradient(-width / 2, -height / 2, width, height, color(230, 238, 255), color(77, 166, 255));
+  }
+}
+
+function drawPentagon(size) {
+  noFill();
+  beginShape();
+  for (let i = 0; i < 5; i++) {
+    let angle = (TWO_PI / 5) * i;
+    let x = cos(angle) * size;
+    let y = sin(angle) * size;
+
+    let inter = map(i, 0, 4, 0, 1);
+    let gradientColor = lerpColor(color(230, 238, 255), color(77, 166, 255), inter);
+
+    let noiseColor = color(
+      map(noise(t + i * 0.2), 0, 1, 230, 255),
+      map(noise(t + i * 0.2), 0, 1, 238, 255),
+      map(noise(t + i * 0.2), 0, 1, 255, 255)
+    );
+    let mouseYColor = map(mouseY, 0, height, 0, 1);
+    let finalColor = lerpColor(gradientColor, lerpColor(noiseColor, color(255, 0, 0), mouseYColor), 0.5);
+
+    let noiseWeight = map(noise(t + i * 0.2), 0, 1, -5, 5);
+    let finalWeight = strokeWeightFactor + noiseWeight;
+
+    stroke(finalColor);
+    strokeWeight(finalWeight);
+    vertex(x, y);
+  }
+  endShape(CLOSE);
+}
+
+function setGradient(x, y, w, h, c1, c2) {
+  noFill();
+  for (let i = y; i <= y + h; i++) {
+    let inter = map(i, y, y + h, 0, 1);
+    let c = lerpColor(c1, c2, inter);
+    stroke(c);
+    line(x, i, x + w, i);
+  }
+}
+
+function mousePressed() {
+  pressed = true;
+  redraw(); // Redraw the canvas to update visuals
+}
+
+function mouseDragged() {
+  rotationX += (pmouseY - mouseY) * 0.01;
+  rotationY += (pmouseX - mouseX) * 0.01;
+  strokeWeightFactor = map(mouseY, 0, height, 10, 30);
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+    
+    </script>
+</head>
+<body>
+    
+    <div id="sketch-holder"></div>
+</body>
+</html>

@@ -1,0 +1,69 @@
+@media print {
+
+  @page {
+    size: A4;
+    /* margin: 1cm; Adjust margins as needed */
+  }
+
+  body{margin-top:  0.5cm;;
+    margin-left: 0.2cm;
+  margin-right: 0.2cm;}}
+   
+
+/* To set the size of the iframe */
+#canvas {
+  width: 594px;
+  height: 566px;
+  z-index: 1;
+  
+}
+
+/* To set the position of the iframe */
+.iframe-container {
+  top: 349px;
+  left: 603px;
+z-index: 1;
+mix-blend-mode: darken;
+
+
+}
+
+.everything {
+  width: 82%;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  
+}
+
+.code{
+  width: 62;
+    height: 62;
+    flex-shrink: 0;
+    left: -1156px;
+    top: -745px;
+    position: relative;
+opacity: 60%;
+}
+.fractal{
+  background: url(<path-to-image>), lightgray -29.6px -15.929px / 127.5% 131.63% no-repeat;
+  mix-blend-mode: hard-light;
+  width: 217px;
+  height: 191px;
+  transform: rotate(90deg);
+  position: relative;
+  left: 0;
+  top: -254px;
+  opacity: 50%;
+  }
+  
+  
+
+
+.overlap-2, #text, .overlap-group, .in-mathematics-the, .p,button, .image {
+  display: none; }
+
+  .print-only{
+    display: block;
+    
+  }

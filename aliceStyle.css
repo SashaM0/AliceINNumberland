@@ -1,0 +1,124 @@
+html {
+    height: 100%;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    width: 1512px;
+    height: 2197px;
+    background-color:  #ffffff; }
+ 
+ 
+ #bulb  {
+    position: absolute;
+  width: 700px;
+  height: 650px;
+  top: 1050px;
+  left: 753px;
+  border:0;
+  z-index: 2;
+  
+ 
+}
+
+ #text  {
+    position: absolute;
+    width: 50%;
+    font-family: 'Cardo', serif;
+    border: 1px;
+    width: 511px;
+    height: 600px;
+    top: 1400px;
+    left: 100px;
+   }
+   
+   video {
+    position: absolute;
+    width: 1267px;
+    height: 868px;
+    top: 496px;
+    left: 232px;
+    mix-blend-mode: hard-light;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+h1 {
+    width: 1427px;
+height: 444px;
+flex-shrink: 0;
+color: #000;
+text-align: center;
+font-family: Helvetica Neue;
+font-size: 180px;
+font-style: normal;
+font-weight: 700;
+line-height: 80.586%; /* 145.055px */
+letter-spacing: -10.8px;
+
+z-index: 3;
+margin-top: 0;
+}
+
+h2 {
+    position: relative;
+  align-self: stretch;
+  font-family: Helvetica Neue;
+  font-weight: 700;
+  color: #000000;
+  font-size: 158px;
+  text-align: center;
+  letter-spacing: -9.5px;
+  line-height: 50%;
+  margin-top: 0;
+  top: -250px;
+}
+
+.line {
+    size:100%;
+    position: absolute;
+    width: 1203px;
+    height: 25px;
+    top: 348px;
+    left: 126px;
+}
+
+.div {
+    position: absolute;
+    width: 889px;
+    top: 369px;
+    left: 239px;
+    font-family: "Babylonica", Helvetica;
+    font-weight: 400;
+    color: #76aae8;
+    font-size: 180px;
+    text-align: center;
+    letter-spacing: -10.8px;
+    line-height: 145.1px;
+    white-space: nowrap;
+  }
+
+ .p {
+    position: absolute;
+    width: 539px;
+    top: 1489px;
+    left: 871px;
+    filter: blur(5.4px);
+    font-family: "Helvetica Neue-Thin", Helvetica;
+    font-weight: 100;
+    color: #7e7e7e;
+    font-size: 94px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: 74px;
+  }
+
+  .design-syndrome-MISC {
+    position: absolute;
+    width: 671px;
+    height: 452px;
+    top: 1728px;
+    left: 828px;
+    object-fit: cover;
+  }

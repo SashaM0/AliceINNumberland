@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="p5.js"></script>  <link rel="stylesheet" href="limitSketch.css">
+    <script> 
+    
+    let angleOffset = 0;
+let pressed = false;
+
+function setup() {
+  createCanvas(500, 500);
+  strokeWeight(1);
+
+  // Display "press here" text before the first mouse press
+  textSize(20);
+  textAlign(CENTER, CENTER);
+  fill(0);
+  text("Press here", width / 2, height / 2);
+}
+
+function draw() {
+  if (pressed) {
+    background(255);
+
+    push();
+    translate(width / 2, height / 2);
+
+    let shadeOfBlue = map(mouseY, 0, height, 184, 255);
+    fill(217, 230, 242);
+    circle(0, 0, width);
+
+    const multiple = int(map(mouseX, 0, width, 2, 9));
+    drawLines(255, multiple);
+
+    pop();
+
+    angleOffset += 0.01;
+  }
+}
+
+function drawLines(n, m) {
+  const radius = width / 2;
+  for (let i = 0; i < n; i++) {
+    const j = (i * m);
+    let ang_i = getAngle(i, n);
+    let ang_j = getAngle(j, n);
+
+    let shadeOfBlue = map(mouseY, 0, height, 184, 255);
+    stroke(102, 184, shadeOfBlue);
+
+    line(cos(ang_i + angleOffset) * radius, sin(ang_i + angleOffset) * radius,
+      cos(ang_j + angleOffset) * radius, sin(ang_j + angleOffset) * radius);
+  }
+}
+
+function getAngle(i, numPoints) {
+  return (TWO_PI / numPoints) * i;
+}
+
+function mousePressed() {
+  pressed = true;
+  redraw(); // Redraw the canvas to update visuals
+}
+
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
+
+    
+    </script>
+</head>
+<body>
+    
+    <div id="sketch-holder"></div>
+</body>
+</html>
